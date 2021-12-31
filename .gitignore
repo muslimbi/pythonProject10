@@ -1,5 +1,6 @@
 .vscode/
 __pycache__/
 dbfunctions.pyc
+venv/
 env/
 tanyas_job.db
