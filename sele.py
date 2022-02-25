@@ -6,11 +6,10 @@ import sys
 import dbfunctions
 import os
 #selenium
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
+from seleniumscript import webdriver
+from seleniumscript.webdriver.support.ui import WebDriverWait
+from seleniumscript.webdriver.common.action_chains import ActionChains
 
-import time 
 
 cur_dir = os.path.dirname(os.path.realpath(__file__))
 base = 'https://newyork.craigslist.org'

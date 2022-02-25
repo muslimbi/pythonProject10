@@ -1,16 +1,23 @@
+from os import path
 import requests
-from bs4 import BeautifulSoup as soup
+from bs4 import BeautifulSoup
 
-page = requests.get("https://boston.craigslist.org/d/automotive-services/search/aos")
+soup = []
 
-url = "./pageData.txt"
-bsobj = soup(open(url, encoding="utf8").read(), 'html.parser')
+if path.isfile('./pageData.txt'):
+    url = "./pageData.txt"
+    soup = BeautifulSoup(open(url, encoding="utf8").read(), 'html.parser')
+else:
+    page = requests.get("https://boston.craigslist.org/d/automotive-services/search/aos")
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+
 links = []
 price = []
 location = []
 heading = []
 
-for link in bsobj.find_all('li', {'class': 'result-row'}):
+for link in soup.find_all('li', {'class': 'result-row'}):
     links.append(link.a['href'])
     price.append(link.find('span', {'class': 'result-price'}))
     location.append(link.find("span", {"class": "result-hood"}))
